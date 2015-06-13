@@ -1,0 +1,14 @@
+-- build.settings for project: PreKGame-- Managed with http://OutlawGameTools.com-- Copyright 2015 . All Rights Reserved.-- cpmgen build.settings
+settings =
+{
+	orientation =
+	{
+		default ="landscapeRight",
+		content = "landscapeRight",
+		supported =
+		{
+			"landscapeLeft","landscapeRight"
+		},
+	},
+
+}
