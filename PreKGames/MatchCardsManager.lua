@@ -71,21 +71,43 @@ end
 	-- we will call our logic on another function - maybe even new class 
 function  myTouch( event )
 	    if event.phase == "began" then
-	    	print( "You touched the object! bah")
+	    	print( "You touched the object! "..event.target.imageId)
+	    	
+	    	if event.target.state == 1 then
+	    		print("already flipped do nothing")
+	    		return true
+	    	end
 	        if MatchCardsManager.firstCardSelected == 0 then -- then we can flip a card
-	        	
-	        	MatchCardsManager.firstCardSelected = event.target.imageId
-	        	print( "You touched the object! bah"..MatchCardsManager.firstCardSelected)
-	    	elseif MatchCardsManager.secondCardSelected == 0 then
+	        	event.target:setFillColor (0.72, 0.9, 0.16, 0.7 )
+	        	event.target.state = 1
+	        	MatchCardsManager.firstCardSelected = event.target
 	    		
-	    		MatchCardsManager.secondCardSelected = event.target.imageId
-	    		print( "You touched the object! bah"..MatchCardsManager.secondCardSelected)
+	        	print( "You touched the object! bah"..MatchCardsManager.firstCardSelected.imageId)
+	    	elseif MatchCardsManager.secondCardSelected == 0 then
+	    		event.target:setFillColor (0.72, 0.9, 0.16, 0.7 )
+	    		event.target.state = 1
+	    		MatchCardsManager.secondCardSelected = event.target
+	    		print( "You touched the object! bah"..MatchCardsManager.secondCardSelected.imageId)
+	    		checkCardsMatchLogic()
 	        end	
         	return true
 	    end
 end
 
-
+function checkCardsMatchLogic()
+	 if MatchCardsManager.firstCardSelected.imageId == MatchCardsManager.secondCardSelected.imageId then
+	        	print ("you have a match")
+	        	MatchCardsManager.firstCardSelected = 0
+	        	MatchCardsManager.secondCardSelected = 0
+	 else
+	           MatchCardsManager.firstCardSelected:setFillColor ( 0.5 )
+	           MatchCardsManager.secondCardSelected:setFillColor( 0.5 )
+	           MatchCardsManager.firstCardSelected.state = 0
+	           MatchCardsManager.secondCardSelected.state = 0
+	           MatchCardsManager.firstCardSelected = 0
+	           MatchCardsManager.secondCardSelected = 0
+	 end
+end
 
 -- here we plan to display them on the screen -- lets do this horizontal 3 x 2 
 function MatchCardsManager:displayPlacementCard(idx, animal, x, y)

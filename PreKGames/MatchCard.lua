@@ -34,7 +34,9 @@ function MatchCard:show(x, y)
 	self.show.strokeWidth = 3
 	self.show:setFillColor( 0.5 )
 	self.show:setStrokeColor( 1, 0, 0 )
+	self.show.animal = nil
 	self.show.imageId = self.imageId -- TODO better way of creating a table since self of addEventListener  does not work
+	self.show.state = 0
 	--self.show:addEventListener ( "touch", self)
 end
 
