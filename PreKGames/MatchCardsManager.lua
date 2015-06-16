@@ -28,6 +28,8 @@ local animalPicsReference = { "dog", "dog", "cat", "cat", "pig", "pig" , "fish",
 MatchCardsManager.totalCards = 8
 MatchCardsManager.totalPairs = 4
 MatchCardsManager.pairsFound = 0
+MatchCardsManager.firstCardSelected = 0
+MatchCardsManager.secondCardSelected = 0
 MatchCardsManager.cards = {} -- table to hold card objects
 
 
@@ -47,8 +49,7 @@ function MatchCardsManager:create()
 		   temp = animalPics[num]
 		   table.remove(animalPics, num) 
 		   mCard[i] = MatchCardsManager:displayPlacementCard(i, temp, x, y)
-		    
-		   mCard[i].show:addEventListener("touch", mCard[i])
+		   mCard[i].show:addEventListener("touch", myTouch)
 		  
 	end
 	
@@ -60,19 +61,31 @@ function MatchCardsManager:create()
 		   temp = animalPics[num]
 		   table.remove(animalPics, num) 
 		   mCard[j] = MatchCardsManager:displayPlacementCard(j, temp, x, y)
-		   mCard[j].show:addEventListener("touch", mCard[j])
+		   mCard[j].show:addEventListener("touch", myTouch)
 	end
-	
-	-- touch event for mCard -- is this the best way for OOP it works though
+	return mCard
+end
+
+-- touch event for mCard -- is this the best way for OOP it works though
 	-- here we should discuss logic in the later functions but still good for now
-	local function touch( event )
+	-- we will call our logic on another function - maybe even new class 
+function  myTouch( event )
 	    if event.phase == "began" then
-        	print( "You touched the object! "..event.target.imageId)
+	    	print( "You touched the object! bah")
+	        if MatchCardsManager.firstCardSelected == 0 then -- then we can flip a card
+	        	
+	        	MatchCardsManager.firstCardSelected = event.target.imageId
+	        	print( "You touched the object! bah"..MatchCardsManager.firstCardSelected)
+	    	elseif MatchCardsManager.secondCardSelected == 0 then
+	    		
+	    		MatchCardsManager.secondCardSelected = event.target.imageId
+	    		print( "You touched the object! bah"..MatchCardsManager.secondCardSelected)
+	        end	
         	return true
 	    end
-	end
-	
 end
+
+
 
 -- here we plan to display them on the screen -- lets do this horizontal 3 x 2 
 function MatchCardsManager:displayPlacementCard(idx, animal, x, y)

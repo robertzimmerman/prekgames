@@ -38,13 +38,6 @@ function MatchCard:show(x, y)
 	--self.show:addEventListener ( "touch", self)
 end
 
-function MatchCard:touch( event )
-	if event.phase == "began" then
-        print( "You touched the object! "..event.target.imageId)
-        return true
-    end
-end
-
 return MatchCard 
 
 		
