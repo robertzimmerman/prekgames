@@ -18,7 +18,6 @@ MatchCard = {
    id = 0, -- placeId
    imageId = 0, -- imageId for pic to show
    state = 0, -- 1 being touched over 0 not touched
-   success = 0 -- 0 false did not find a MatchCard 1 being successful
 }
 
 -- Derived class method new
@@ -36,7 +35,7 @@ function MatchCard:show(x, y)
 	self.show:setFillColor( 0.5 )
 	self.show:setStrokeColor( 1, 0, 0 )
 	self.show.imageId = self.imageId -- TODO better way of creating a table since self of addEventListener  does not work
-	self.show:addEventListener ( "touch", self)
+	--self.show:addEventListener ( "touch", self)
 end
 
 function MatchCard:touch( event )

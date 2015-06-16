@@ -52,7 +52,7 @@ function scene:show( event )
     -- adding eventListeners for each square 
     -- TODO: lets make this dynamic with class
     MatchCardsManager:create()
-    MatchCardsManager:display(self)
+    --MatchCardsManager:display(self)
     
     --local redBox = self:getObjectByTag( "Rect5" )
     --redBox.objectName="rect5Name"
