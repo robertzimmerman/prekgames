@@ -8,6 +8,7 @@ var GameState = {
 	preload: function() {
 		// loading assets (key, path)
 		this.load.image('farm', 'assets/images/farm.jpg');
+		this.load.image('btn', 'assets/images/sqrbtn.png');
 	},
 	// on create game
 	create: function() {
@@ -19,6 +20,7 @@ var GameState = {
 		this.scale.pageAlignHorizontally = true;
 
 		//this.scale.setScreenSize(true);
+		// creating a btn group layout
 
 		// adding background
 		// this.game will give access to the games object
